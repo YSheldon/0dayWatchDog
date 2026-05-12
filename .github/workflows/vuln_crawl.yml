@@ -56,6 +56,9 @@ jobs:
           echo "json_file=${JSON_FILE}" >> $GITHUB_OUTPUT
           echo "md_file=${MD_FILE}" >> $GITHUB_OUTPUT
 
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.GH_PAT }}" | gh auth login --with-token
+        
       - name: 自动提交更新
         run: |
           git config --global user.name "GitHub Actions"
