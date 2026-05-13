@@ -16,6 +16,9 @@ on:
           - '14'
           - '30'
 
+permissions:
+  contents: write
+
 jobs:
   crawl-and-update:
     runs-on: ubuntu-22.04
@@ -24,6 +27,8 @@ jobs:
     steps:
       - name: 检出仓库
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
 
       - name: 设置Python
         uses: actions/setup-python@v4
@@ -56,9 +61,6 @@ jobs:
           echo "json_file=${JSON_FILE}" >> $GITHUB_OUTPUT
           echo "md_file=${MD_FILE}" >> $GITHUB_OUTPUT
 
-      - name: Authenticate GitHub CLI
-        run: echo "${{ secrets.GH_PAT }}" | gh auth login --with-token
-        
       - name: 自动提交更新
         run: |
           git config --global user.name "GitHub Actions"
