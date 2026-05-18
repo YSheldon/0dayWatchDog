@@ -1,4 +1,4 @@
-name: 0day-monitor 0day监控
+name: 0day-monitor 0day监控-每天8点
 
 on:
   schedule:
