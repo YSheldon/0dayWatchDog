@@ -26,3 +26,5 @@ config.json
 
 # 可执行文件
 VulnCrawler.spec
+/.omx
+/.codex
